@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@app.root_meta.name</title>
+  </head>
+
+  <body>
+    <h1>@app.root_meta.name</h1>
+
+    @for subj in app.subjects
+    <div>
+      <b>@subj.name</b> (@subj.short) <br />
+      @subj.teacher
+      @if cover := subj.cover
+      <img src="/raw/@subj.path/@cover"/>
+      @cover
+      @end
+    </div>
+    @end
+  </body>
+</html>
