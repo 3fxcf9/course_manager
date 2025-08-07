@@ -1,0 +1,21 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@subject_name</title>
+  </head>
+
+  <body>
+    <h1>@subject_name</h1>
+
+    @for chap in chapters
+    <div>
+      <b>@chap.name</b> (@chap.date)<br/>
+      @if cover := chap.cover
+      <img src="/raw/@chap.path/@cover"/>
+      @cover
+      @end
+    </div>
+    @end
+  </body>
+</html>

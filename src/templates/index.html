@@ -8,9 +8,9 @@
   <body>
     <h1>@app.root_meta.name</h1>
 
-    @for subj in app.subjects
+    @for subj in subjects
     <div>
-      <b>@subj.name</b> (@subj.short) <br />
+      <a href="/subject/@subj.path"<b>@subj.name</b></a> (@subj.short) <br />
       @subj.teacher
       @if cover := subj.cover
       <img src="/raw/@subj.path/@cover"/>
