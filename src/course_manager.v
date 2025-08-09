@@ -60,10 +60,12 @@ mut:
 }
 
 struct ChapterMeta {
-	name  string
-	date  string
-	cover ?string
-	path  string
+	name        string
+	date        string
+	description ?string
+	cover       ?string
+	path        string
+	filename    string
 }
 
 fn parse_subjects(root_path string) ![]SubjectMeta {
@@ -73,6 +75,10 @@ fn parse_subjects(root_path string) ![]SubjectMeta {
 	mut subjects := []SubjectMeta{}
 	for dir in directories {
 		meta_file_path := os.join_path(root_path, dir, 'info.json')
+
+		if !os.exists(meta_file_path) {
+			continue
+		}
 		info_json := os.read_file(meta_file_path)!
 		mut info_decoded := json.decode(SubjectMeta, info_json)!
 		if os.exists(os.join_path(root_path, dir, 'cover.svg')) {
@@ -91,15 +97,24 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 
 	mut chapters := []ChapterMeta{}
 	for dir in directories {
+		// Parse title and in-file metadata
+		chapter_absolute_path := os.join_path(root_path, subject_path, dir)
+		content_file := (os.ls(chapter_absolute_path) or { [] }).filter(it.ends_with('.md')
+			|| it.ends_with('.mde'))[0]!
+		chap_title := os.read_lines(os.join_path_single(chapter_absolute_path, content_file))![0]!.all_after_first('# ')
+		// TODO: Parse in-file metadata
+
 		chapters << ChapterMeta{
-			name:  os.join_path_single(subject_path, dir).all_after_last('/') // TODO: Use md header as title
-			date:  'FA/KE/DATE' // TODO: Use md date (add to md parser)
-			cover: if os.exists(os.join_path(root_path, subject_path, dir, 'cover.svg')) {
+			name:        chap_title
+			date:        'FA/KE/DATE' // TODO: Use md date (add to md parser)
+			description: 'Briefly describe what is in this chapter, to be retrieved from the md file.'
+			cover:       if os.exists(os.join_path_single(chapter_absolute_path, 'cover.svg')) {
 				'cover.svg'
 			} else {
 				none
 			}
-			path:  os.join_path_single(subject_path, dir)
+			path:        os.join_path_single(subject_path, dir)
+			filename:    content_file
 		}
 	}
 
@@ -126,6 +141,7 @@ fn web(cmd Command) ! {
 	app.static_mime_types['.md'] = 'txt/plain'
 	app.static_mime_types['.mde'] = 'txt/plain'
 	app.mount_static_folder_at(figure_folder_path, '/raw')!
+	app.mount_static_folder_at('static', '/static')!
 	veb.run[App, Context](mut app, 8081)
 }
 
@@ -136,7 +152,14 @@ pub fn (app &App) index(mut ctx Context) veb.Result {
 }
 
 @['/subject/:subject_name']
-pub fn (app &App) subject(mut ctx Context, subject_name string) veb.Result {
-	chapters := parse_chapters(app.root, subject_name) or { return ctx.request_error('Error') }
+pub fn (app &App) subject(mut ctx Context, requested_subject string) veb.Result {
+	subjects := parse_subjects(app.root) or { return ctx.request_error('Error parsing subjects') }
+	subject := subjects.filter(it.short == requested_subject)[0] or {
+		return ctx.request_error('Error: no such subject found')
+	}
+	chapters := parse_chapters(app.root, subject.path) or {
+		return ctx.request_error('Error parsing chapters')
+	}
+
 	return $veb.html()
 }

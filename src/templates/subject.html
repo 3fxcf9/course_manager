@@ -2,20 +2,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@subject_name</title>
+    <title>@subject.name</title>
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/subject.css">
+
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
 
   <body>
-    <h1>@subject_name</h1>
+    <div class="back">
+    <a href="/" class="back-button">← Subjects</a>
+    </div>
+    <h1>@subject.name</h1>
 
-    @for chap in chapters
-    <div>
-      <b>@chap.name</b> (@chap.date)<br/>
-      @if cover := chap.cover
-      <img src="/raw/@chap.path/@cover"/>
-      @cover
+    <div class="search">
+      <input type="text" name="search_query" placeholder="Search…" autofocus>
+    </div>
+
+    <div class="chapter-list">
+      @for chap in chapters
+        <a class="chapter" href="/chapter/@chap.path/@chap.filename"
+          @if desc := chap.description
+            data-chapter-description="@desc"
+          @end
+        >
+          @if cover := chap.cover
+            <div class="cover" style="background-image: url('/raw/@chap.path/@cover')"></div>
+          @end
+          <span class="chapter-name">@chap.name</span>
+          <span class="chapter-date">@chap.date</span>
+        </a>
       @end
     </div>
-    @end
+
+    <script src="/static/subject_search.js"></script>
   </body>
 </html>

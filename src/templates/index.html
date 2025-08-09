@@ -3,20 +3,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@app.root_meta.name</title>
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/index.css">
+
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
 
   <body>
-    <h1>@app.root_meta.name</h1>
+    <div class="header">
+      <h1>@app.root_meta.name</h1>
+      <span class="header-date">@app.root_meta.date</span>
+    </div>
 
-    @for subj in subjects
-    <div>
-      <a href="/subject/@subj.path"<b>@subj.name</b></a> (@subj.short) <br />
-      @subj.teacher
-      @if cover := subj.cover
-      <img src="/raw/@subj.path/@cover"/>
-      @cover
+    <div class="subject-grid">
+      @for subj in subjects
+        <a class="subject" href="/subject/@subj.short">
+        @if cover := subj.cover
+          <div class="cover" style="background-image: url('/raw/@subj.path/@cover')"></div>
+        @else
+          <div class="cover" style="background-color: #aaaaff22"></div>
+        @end
+
+        <div class="content">
+          <div>
+            <span class="subject-name">@subj.name</span>
+            <span class="subject-short">@subj.short</span>
+          </div>
+          <span class="subject-teacher">@subj.teacher</span>
+        </div>
+      </a>
       @end
     </div>
-    @end
   </body>
 </html>

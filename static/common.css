@@ -1,0 +1,55 @@
+body {
+  --bg-color: #11111b;
+  --text-color: #cdd6f4;
+  --subtext-color: #45475a;
+  --red-color: #f38ba8;
+  --accent-color: #89b4fa;
+  --on-accent-color: black;
+  --links-color: #89b4fa;
+  --code-bg-color: #ffffff0a;
+  --code-color: #666;
+  --input-background-color: #1e1f2c;
+}
+
+@media print {
+  body {
+    --bg-color: white;
+    --text-color: black;
+    --subtext-color: #7c7f93;
+    --red-color: #e64553;
+    --accent-color: #89b4fa;
+    --on-accent-color: black;
+    --links-color: #89b4fa;
+    --code-bg-color: #eee;
+    --code-color: #333;
+    --input-background-color: #ccc;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10vh 20vw;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  /* fix for Chrome */
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}

@@ -1,0 +1,679 @@
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+html {
+  font-size: 140%;
+}
+
+@media print {
+  html,
+  body {
+    width: 170mm;
+    height: 257mm;
+  }
+
+  body {
+    font-size: 3.8mm;
+  }
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+a {
+  color: var(--links-color);
+}
+
+body {
+  padding: 10vh 20vw;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-family: "Computer Modern Serif";
+  /* font-family: "Linux Libertine", serif; */
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    padding: 2rem 1rem;
+  }
+}
+
+@media print {
+  body {
+    padding: 0 !important;
+  }
+}
+
+p {
+  line-height: 200%;
+  margin: 1rem 0;
+}
+
+@media print {
+  p {
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  p {
+    text-align: justify;
+  }
+}
+
+/*************** Blockquote ***************/
+/*
+* <div class="blockquote">
+*   <blockquote></blockquote>
+*   <cite>Author, date</cite>
+* </div> */
+div.blockquote {
+  padding-left: 2.5rem;
+}
+
+blockquote {
+  position: relative;
+  margin-right: 2.5rem;
+}
+
+blockquote > *:first-child {
+  margin-top: 0;
+}
+
+blockquote > *:last-child {
+  margin-bottom: 0;
+}
+
+blockquote::before,
+blockquote::after {
+  content: "";
+
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+
+  position: absolute;
+  background-color: var(--subtext-color);
+}
+
+blockquote::before {
+  top: 0;
+  left: -2.5rem;
+
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"/></svg>')
+    no-repeat center/contain;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"/></svg>')
+    no-repeat center/contain;
+}
+
+blockquote::after {
+  bottom: 0;
+  right: -2.5rem;
+
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.4167 6.67891C20.4469 7.77257 21.0001 9 21.0001 10.9897C21.0001 14.4891 18.5436 17.6263 14.9695 19.1768L14.0768 17.7992C17.4121 15.9946 18.0639 13.6539 18.3245 12.178C17.7875 12.4557 17.0845 12.5533 16.3954 12.4895C14.591 12.3222 13.1689 10.8409 13.1689 9C13.1689 7.067 14.7359 5.5 16.6689 5.5C17.742 5.5 18.7681 5.99045 19.4167 6.67891ZM9.41669 6.67891C10.4469 7.77257 11.0001 9 11.0001 10.9897C11.0001 14.4891 8.54359 17.6263 4.96951 19.1768L4.07682 17.7992C7.41206 15.9946 8.06392 13.6539 8.32447 12.178C7.78747 12.4557 7.08452 12.5533 6.39539 12.4895C4.59102 12.3222 3.16895 10.8409 3.16895 9C3.16895 7.067 4.73595 5.5 6.66895 5.5C7.742 5.5 8.76814 5.99045 9.41669 6.67891Z"></path></svg>')
+    no-repeat center/contain;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.4167 6.67891C20.4469 7.77257 21.0001 9 21.0001 10.9897C21.0001 14.4891 18.5436 17.6263 14.9695 19.1768L14.0768 17.7992C17.4121 15.9946 18.0639 13.6539 18.3245 12.178C17.7875 12.4557 17.0845 12.5533 16.3954 12.4895C14.591 12.3222 13.1689 10.8409 13.1689 9C13.1689 7.067 14.7359 5.5 16.6689 5.5C17.742 5.5 18.7681 5.99045 19.4167 6.67891ZM9.41669 6.67891C10.4469 7.77257 11.0001 9 11.0001 10.9897C11.0001 14.4891 8.54359 17.6263 4.96951 19.1768L4.07682 17.7992C7.41206 15.9946 8.06392 13.6539 8.32447 12.178C7.78747 12.4557 7.08452 12.5533 6.39539 12.4895C4.59102 12.3222 3.16895 10.8409 3.16895 9C3.16895 7.067 4.73595 5.5 6.66895 5.5C7.742 5.5 8.76814 5.99045 9.41669 6.67891Z"></path></svg>')
+    no-repeat center/contain;
+}
+
+@media print {
+  blockquote::before,
+  blockquote::after {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+
+cite {
+  display: block;
+  text-align: right;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: smaller;
+}
+
+cite::before {
+  content: "— ";
+}
+
+mark {
+  background-color: var(--accent-color);
+  color: var(--on-accent-color);
+}
+
+/*************** code ***************/
+code {
+  color: var(--code-color);
+  background-color: var(--code-bg-color);
+  padding: 0 0.2rem;
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 1rem 0;
+  padding-left: 1.5rem;
+  background-color: var(--code-bg-color);
+  border-left: 3px solid var(--accent-color);
+  color: var(--code-color);
+  page-break-inside: avoid;
+  white-space: pre;
+  font-family: monospace;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+@media print {
+  pre {
+    border-color: var(--subtext-color);
+    padding: 0.5rem 1rem;
+  }
+}
+
+pre > code {
+  padding: 0;
+  background-color: transparent;
+  display: block;
+}
+
+/************** hr ***************/
+hr {
+  margin: 2rem 0;
+  border-top: 2px solid var(--subtext-color);
+}
+
+hr.style-sawteeth::after {
+  height: 30px;
+  content: "";
+  display: block;
+  top: -2px;
+  background:
+    linear-gradient(-135deg, var(--bg-color) 20px, rgba(0, 0, 0, 0) 0) 0 5px,
+    linear-gradient(135deg, var(--bg-color) 20px, rgba(0, 0, 0, 0) 0) 0 5px;
+  background-color: rgba(0, 0, 0, 0);
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  background-size: 20px 40px;
+  position: relative;
+}
+
+hr.style-sawteeth {
+  height: 30px;
+  border: none;
+  background:
+    linear-gradient(-135deg, var(--subtext-color) 20px, rgba(0, 0, 0, 0) 0) 0
+      5px,
+    linear-gradient(135deg, var(--subtext-color) 20px, var(--bg-color) 0) 0 5px;
+  background-color: rgba(0, 0, 0, 0);
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  background-size: 20px 40px;
+}
+
+hr.style-dotted {
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    var(--subtext-color) 10%,
+    10%,
+    transparent 90%,
+    90%,
+    var(--subtext-color)
+  );
+  background-position: center top;
+  background-repeat: repeat-x;
+  background-size: 15px 2px;
+  height: 2px;
+}
+
+hr.style-dashed {
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    var(--subtext-color) 25%,
+    25%,
+    transparent 75%,
+    75%,
+    var(--subtext-color)
+  );
+  background-position: center top;
+  background-repeat: repeat-x;
+  background-size: 30px 2px;
+  height: 2px;
+}
+
+@media print {
+  hr {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+
+/*************** Lists ***************/
+ul > li {
+  list-style-type: "▷  ";
+}
+
+ul > li > ul > li {
+  list-style-type: "★  ";
+}
+
+ul > li > ul > li > ul > li {
+  list-style-type: "−  ";
+}
+
+ul > li::marker {
+  font-size: 0.8rem;
+}
+
+@media print {
+  ul > li::marker {
+    font-size: 0.5rem;
+  }
+}
+
+ul > li,
+ol > li {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  ul > li,
+  ol > li {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  ul > li,
+  ol > li {
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Maths */
+.katex {
+  font-size: 1em;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/*************** Environments ***************/
+
+.environment {
+  margin: 1rem 0;
+  position: relative;
+  page-break-inside: avoid;
+}
+
+.environment > *:not(.environment-title):first-of-type {
+  margin-top: 0;
+}
+
+.environment > *:last-child {
+  margin-bottom: 0;
+}
+
+.environment-theorem,
+.environment-corollary,
+.environment-lemma,
+.environment-definition,
+.environment-example {
+  border: 2px solid var(--subtext-color);
+  padding: 1.5rem;
+}
+
+@media print {
+  .environment-theorem,
+  .environment-corollary,
+  .environment-lemma,
+  .environment-definition,
+  .environment-example {
+    padding: 0.5rem;
+  }
+}
+
+.environment-theorem {
+  border-style: double;
+  border-width: 5px;
+}
+
+.environment-definition {
+  border-style: dashed;
+}
+
+.environment-example {
+  border-style: none none none solid;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+}
+
+/* Environment title */
+.environment-theorem > .environment-title,
+.environment-corollary > .environment-title,
+.environment-lemma > .environment-title,
+.environment-definition > .environment-title {
+  font-size: 0.9rem;
+  position: absolute;
+  left: 1rem;
+  top: -1px;
+  translate: 0 -50%;
+  padding: 0 0.5rem;
+  font-family: sans-serif;
+  color: var(--subtext-color);
+  background-color: var(--bg-color);
+}
+
+@media print {
+  .environment-theorem > .environment-title,
+  .environment-corollary > .environment-title,
+  .environment-lemma > .environment-title,
+  .environment-definition > .environment-title {
+    font-size: 0.7rem;
+  }
+}
+
+.environment-theorem > .environment-title {
+  top: -2.5px;
+}
+
+/* Environment margin tag */
+.environment-theorem::before,
+.environment-corollary::before,
+.environment-lemma::before,
+.environment-proof::before,
+.environment-definition::before,
+.environment-remark::before,
+.environment-example::before,
+.environment-exercise::before {
+  font-size: 20px;
+  position: absolute;
+  left: -5%;
+  transform: translateX(-100%);
+  top: 0;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: var(--subtext-color);
+  /* Align vertically with the first line of text */
+  line-height: 200%;
+}
+
+.environment-theorem::before {
+  content: "THM";
+}
+
+.environment-corollary::before {
+  content: "COR";
+}
+
+.environment-lemma::before {
+  content: "LEMMA";
+}
+
+.environment-proof::before {
+  content: "PROOF";
+}
+
+.environment-definition::before {
+  content: "DEF";
+}
+
+.environment-remark::before {
+  content: "REM";
+}
+
+.environment-example::before {
+  content: "EXPLE";
+}
+
+body {
+  counter-reset: exercise-counter;
+}
+
+.environment-exercise {
+  counter-increment: exercise-counter;
+}
+
+.environment-exercise::before {
+  content: "EX " counter(exercise-counter);
+}
+
+.environment-remark {
+  --line-color: var(--subtext-color);
+  padding-left: 1.5rem;
+  position: relative;
+  background:
+    linear-gradient(-45deg, var(--line-color) 7.07px, rgba(0, 0, 0, 0) 0) 0 5px,
+    linear-gradient(225deg, var(--line-color) 7.07px, var(--bg-color) 0) 0 5px;
+  background-color: rgba(0, 0, 0, 0);
+  background-position: top left;
+  background-repeat: repeat-y;
+  background-size: 10px 10px;
+}
+
+.environment-remark::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background:
+    linear-gradient(-45deg, var(--bg-color) 7.07px, rgba(0, 0, 0, 0) 0) 0 5px,
+    linear-gradient(225deg, var(--bg-color) 7.07px, rgba(0, 0, 0, 0) 0) 0 5px;
+
+  background-position: top left 2px;
+  background-repeat: repeat-y;
+  background-size: 10px 10px;
+}
+
+@media print {
+  .environment-remark {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    --line-color: var(--text-color);
+  }
+}
+
+.environment-exercise {
+  --line-color: var(--subtext-color);
+  padding-left: 1.5rem;
+  position: relative;
+
+  --size: 4px;
+  --b: 2px;
+  --m: 0.65;
+  --p: calc(var(--m) * var(--size));
+  --R: calc(var(--size) * sqrt(var(--m) * var(--m) + 1) + var(--b) / 2);
+
+  --_g: #0000 calc(99% - var(--b)), var(--line-color) calc(101% - var(--b)) 99%,
+    #0000 101%;
+
+  --mask: radial-gradient(var(--R) at calc(100% + var(--p)) 50%, var(--_g))
+      calc(-1 * var(--size) + var(--p)) calc(50% - 2 * var(--size)) /
+      calc(var(--size) + var(--b)) calc(4 * var(--size)) repeat-y,
+    radial-gradient(var(--R) at calc(-1 * var(--p)) 50%, var(--_g))
+      calc(2 * var(--b)) 50% / calc(var(--size) + var(--b))
+      calc(4 * var(--size)) repeat-y;
+  background: var(--mask);
+}
+
+@media print {
+  .environment-exercise {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    --line-color: var(--text-color);
+  }
+}
+
+/*************** Fold ***************/
+details[open]::details-content {
+  padding: 1rem;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Computer Modern Sans";
+}
+
+/*************** Sidenotes ***************/
+.sidenote {
+  font-size: 80%;
+  position: relative;
+}
+
+/* Wide viewport */
+@media (min-width: 1400px) {
+  .sidenote {
+    float: right;
+    clear: right;
+    text-align: left;
+
+    width: 19vw;
+    margin-right: -19vw;
+    top: -0.5rem;
+    padding-left: 1vw;
+    margin-top: 1rem;
+  }
+}
+
+/* Narrow viewport */
+@media (max-width: 1400px) {
+  .sidenote {
+    float: left;
+    text-align: left;
+
+    width: 100%;
+    margin: 1rem 0;
+    padding-left: 15%;
+  }
+}
+
+/* Sidenote counter */
+body {
+  counter-reset: sidenote-counter;
+}
+
+.sidenote-number {
+  counter-increment: sidenote-counter;
+}
+
+/* Counter before the sidenote in the margin. */
+.sidenote::before {
+  content: counter(sidenote-counter) ". ";
+  position: relative;
+  vertical-align: baseline;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* Counter in the main body. */
+.sidenote-number::after {
+  content: counter(sidenote-counter);
+  vertical-align: super;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-left: 0.1rem;
+}
+
+@media (min-width: 1400px) {
+  /* Highlight the sidenote when mouse hovers on the sidenote number in body. */
+  .sidenote-number:hover .sidenote {
+    background-color: var(--code-bg-color);
+    color: var(--text-color);
+    border-left: 3px solid var(--accent-color);
+    padding-left: calc(1vw - 3px);
+  }
+
+  .sidenote-number:hover {
+    color: var(--accent-color);
+  }
+}
+
+/* Prevent collapsed sidenotes from hiding content blocks */
+.environment,
+details,
+.blockquote,
+hr,
+.katex-display {
+  clear: left;
+}
+
+/*************** Figure **************/
+body {
+  counter-reset: figure-counter;
+}
+
+figure {
+  counter-increment: figure-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: smaller;
+  font-style: italic;
+}
+
+figure:not(.float-left):not(.float-right) {
+  width: 100%;
+}
+
+figure * {
+  text-align: center !important;
+}
+
+figure.float-left {
+  float: left;
+  margin-right: 0.5rem;
+}
+
+figure.float-right {
+  float: right;
+  margin-left: 0.5rem;
+}
+
+figure figcaption::before {
+  content: "Fig " counter(figure-counter) ". ";
+  font-weight: bold;
+  font-family: "Computer Modern Sans";
+  font-variant: small-caps;
+  font-style: initial;
+}
+
+/* Math rendering */
+svg {
+  text-align: left !important;
+  line-height: initial;
+  filter: invert();
+}
+
+@media print {
+  svg {
+    filter: none;
+  }
+}
+
+svg * {
+  text-align: left !important;
+}
+
+svg .katex {
+  color: black !important;
+}
