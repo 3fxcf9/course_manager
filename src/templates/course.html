@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="/static/common.css" />
     <link rel="stylesheet" href="/static/course.css" />
+    <link rel="stylesheet" href="/static/figure_zoom.css" />
 
     <link
       rel="stylesheet"
@@ -35,10 +36,13 @@
       integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
       crossorigin="anonymous"
     ></script>
+
     <script src="/static/math_rendering.js"></script>
+    <script src="/static/figure_zoom.js"></script>
 
     <script>
       window.addEventListener("load", renderMath);
+      window.addEventListener("load", initFigureZoom);
     </script>
 
     <script>

@@ -659,6 +659,10 @@ figure figcaption::before {
   font-style: initial;
 }
 
+figure img {
+  max-width: 80%;
+}
+
 /* Math rendering */
 svg {
   text-align: left !important;

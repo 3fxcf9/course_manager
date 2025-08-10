@@ -162,7 +162,7 @@ pub fn (app &App) subject(mut ctx Context, requested_subject string) veb.Result 
 	return $veb.html()
 }
 
-@['/subject/:short/chapter/:name']
+@['/subject/:short/chapter/:name/view']
 pub fn (app &App) course(mut ctx Context, subject_short string, chapter_name string) veb.Result {
 	subjects := parse_subjects(app.root) or { return ctx.request_error('Error parsing subjects') }
 	subject := subjects.filter(it.short == subject_short)[0] or {
