@@ -34,12 +34,6 @@ body {
   box-sizing: border-box;
 }
 
-body {
-  padding: 10vh 20vw;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-}
-
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings:
@@ -51,5 +45,55 @@ body {
 @supports (font-variation-settings: normal) {
   :root {
     font-family: InterVariable, sans-serif;
+  }
+}
+
+body {
+  padding: 10vh 20vw;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    padding: 2rem 1rem;
+  }
+}
+
+@media print {
+  body {
+    padding: 0 !important;
+  }
+}
+
+.back {
+  margin-bottom: 1.5rem;
+  display: none;
+}
+
+.back-button {
+  font-family: Inter, sans-serif;
+  font-size: initial;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+
+  &:hover {
+    background-color: var(--subtext-color);
+  }
+}
+
+/* Only show on desktop */
+@media screen and (min-width: 1000px) {
+  .back {
+    display: block;
   }
 }

@@ -16,6 +16,12 @@ h1 {
   grid-auto-flow: row;
 }
 
+@media screen and (max-width: 700px) {
+  .subject-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .subject {
   text-decoration: none;
   color: inherit;

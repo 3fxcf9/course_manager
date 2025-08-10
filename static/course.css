@@ -32,7 +32,6 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   font-family: "Computer Modern Serif";
-  /* font-family: "Linux Libertine", serif; */
 }
 
 @media screen and (max-width: 1000px) {
@@ -305,7 +304,7 @@ ol > li {
 
 /* Maths */
 .katex {
-  font-size: 1em;
+  font-size: 1rem !important;
 }
 
 .katex-display {
@@ -639,14 +638,16 @@ figure * {
   text-align: center !important;
 }
 
-figure.float-left {
-  float: left;
-  margin-right: 0.5rem;
-}
+@media screen and (min-width: 700px) {
+  figure.float-left {
+    float: left;
+    margin-right: 0.5rem;
+  }
 
-figure.float-right {
-  float: right;
-  margin-left: 0.5rem;
+  figure.float-right {
+    float: right;
+    margin-left: 0.5rem;
+  }
 }
 
 figure figcaption::before {

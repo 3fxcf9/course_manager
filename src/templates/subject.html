@@ -22,7 +22,7 @@
 
     <div class="chapter-list">
       @for chap in chapters
-        <a class="chapter" href="/chapter/@chap.path/@chap.filename"
+        <a class="chapter" href="/course/@chap.path/@chap.filename"
           @if desc := chap.description
             data-chapter-description="@desc"
           @end

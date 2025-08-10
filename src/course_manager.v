@@ -4,6 +4,7 @@ import json
 import veb
 import os
 import cli { Command }
+import md_parser { md_to_html }
 
 pub struct Context {
 	veb.Context
@@ -76,10 +77,7 @@ fn parse_subjects(root_path string) ![]SubjectMeta {
 	for dir in directories {
 		meta_file_path := os.join_path(root_path, dir, 'info.json')
 
-		if !os.exists(meta_file_path) {
-			continue
-		}
-		info_json := os.read_file(meta_file_path)!
+		info_json := os.read_file(meta_file_path) or { continue }
 		mut info_decoded := json.decode(SubjectMeta, info_json)!
 		if os.exists(os.join_path(root_path, dir, 'cover.svg')) {
 			info_decoded.cover = 'cover.svg'
@@ -151,7 +149,7 @@ pub fn (app &App) index(mut ctx Context) veb.Result {
 	return $veb.html()
 }
 
-@['/subject/:subject_name']
+@['/subject/:short']
 pub fn (app &App) subject(mut ctx Context, requested_subject string) veb.Result {
 	subjects := parse_subjects(app.root) or { return ctx.request_error('Error parsing subjects') }
 	subject := subjects.filter(it.short == requested_subject)[0] or {
@@ -162,4 +160,26 @@ pub fn (app &App) subject(mut ctx Context, requested_subject string) veb.Result 
 	}
 
 	return $veb.html()
+}
+
+@['/course/:path...']
+pub fn (app &App) course(mut ctx Context, path string) veb.Result {
+	requested_path := os.join_path_single(app.root, path)
+
+	if !os.exists(requested_path) {
+		return ctx.not_found()
+	}
+
+	if path.ends_with('.md') || path.ends_with('.mde') {
+		content := os.read_file(requested_path) or { return ctx.not_found() }
+		chap_title := content.all_before('\n').all_after_first('# ')
+
+		current_path := os.abs_path('')
+		os.chdir(os.dir(requested_path)) or { return ctx.request_error('Error') }
+		html := md_to_html(content)
+		os.chdir(current_path) or { return ctx.request_error('Error') }
+		return ctx.html($tmpl('templates/course.html'))
+	}
+
+	return ctx.file(requested_path)
 }
