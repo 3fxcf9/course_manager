@@ -303,7 +303,8 @@ ol > li {
 }
 
 /* Maths */
-.katex {
+.katex-inline .katex,
+.katex-display .katex {
   font-size: 1rem !important;
 }
 

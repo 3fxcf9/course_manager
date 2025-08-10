@@ -162,24 +162,49 @@ pub fn (app &App) subject(mut ctx Context, requested_subject string) veb.Result 
 	return $veb.html()
 }
 
-@['/course/:path...']
-pub fn (app &App) course(mut ctx Context, path string) veb.Result {
-	requested_path := os.join_path_single(app.root, path)
+@['/subject/:short/chapter/:name']
+pub fn (app &App) course(mut ctx Context, subject_short string, chapter_name string) veb.Result {
+	subjects := parse_subjects(app.root) or { return ctx.request_error('Error parsing subjects') }
+	subject := subjects.filter(it.short == subject_short)[0] or {
+		return ctx.request_error('Error: no such subject found')
+	}
+	chapters := parse_chapters(app.root, subject.path) or {
+		return ctx.request_error('Error parsing chapters')
+	}
+	chapter := chapters.filter(it.name == chapter_name)[0] or {
+		return ctx.request_error('Error: no such chapter found')
+	}
 
-	if !os.exists(requested_path) {
+	filepath := os.join_path(app.root, chapter.path, chapter.filename)
+	content := os.read_file(filepath) or { return ctx.not_found() }
+	chap_title := content.all_before('\n').all_after_first('# ')
+
+	// Change directory for correct figure files detection, the parser should do the job by using absolute paths
+	current_path := os.abs_path('')
+	os.chdir(os.dir(filepath)) or { return ctx.request_error('Error') }
+	html := md_to_html(content)
+	os.chdir(current_path) or { return ctx.request_error('Error') }
+
+	return ctx.html($tmpl('templates/course.html')) // Hack to send unescaped html
+}
+
+@['/subject/:short/chapter/:name/figures/:figure_path...']
+pub fn (app &App) figure(mut ctx Context, subject_short string, chapter_name string, figure_path string) veb.Result {
+	subjects := parse_subjects(app.root) or { return ctx.request_error('Error parsing subjects') }
+	subject := subjects.filter(it.short == subject_short)[0] or {
+		return ctx.request_error('Error: no such subject found')
+	}
+	chapters := parse_chapters(app.root, subject.path) or {
+		return ctx.request_error('Error parsing chapters')
+	}
+	chapter := chapters.filter(it.name == chapter_name)[0] or {
+		return ctx.request_error('Error: no such chapter found')
+	}
+
+	filepath := os.join_path(app.root, chapter.path, 'figures', figure_path)
+	if !os.exists(filepath) {
 		return ctx.not_found()
 	}
 
-	if path.ends_with('.md') || path.ends_with('.mde') {
-		content := os.read_file(requested_path) or { return ctx.not_found() }
-		chap_title := content.all_before('\n').all_after_first('# ')
-
-		current_path := os.abs_path('')
-		os.chdir(os.dir(requested_path)) or { return ctx.request_error('Error') }
-		html := md_to_html(content)
-		os.chdir(current_path) or { return ctx.request_error('Error') }
-		return ctx.html($tmpl('templates/course.html'))
-	}
-
-	return ctx.file(requested_path)
+	return ctx.file(filepath)
 }
