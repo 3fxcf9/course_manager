@@ -75,25 +75,44 @@ body {
 .back {
   margin-bottom: 1.5rem;
   display: none;
+  justify-content: space-between;
 }
 
-.back-button {
+.back-button,
+.preview-button {
   font-family: Inter, sans-serif;
   font-size: initial;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
 
   &:hover {
     background-color: var(--subtext-color);
   }
+
+  & svg {
+    color: var(--text-color);
+    filter: initial;
+    width: 1em;
+    vertical-align: text-top;
+    margin-right: 0.5ch;
+  }
 }
 
+.back-button {
+  transform: translateX(-0.5rem);
+}
+
+.preview-button {
+  transform: translateX(0.5rem);
+}
+
+/* .preview-button */
 /* Only show on desktop */
 @media screen and (min-width: 1000px) {
   .back {
-    display: block;
+    display: flex;
   }
 }
