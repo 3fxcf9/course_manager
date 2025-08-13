@@ -1,0 +1,7 @@
+- Add TOC to the live preview
+- Add Figure zoom to the live preview
+- Highlight current section in TOC
+- Get actual metadata in md files (todo parser)
+- Fix course back button (issues with anchors)
+- Fix vw != actual viewport width in mobile figure zoom
+- Button to toggle TOC on mobile ?
