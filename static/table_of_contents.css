@@ -66,4 +66,8 @@
 .toc a {
   color: inherit;
   text-decoration: none;
+
+  &.active {
+    font-weight: bold;
+  }
 }

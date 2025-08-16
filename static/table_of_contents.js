@@ -24,7 +24,7 @@ function initTOC() {
 
   toc_html += "</ol>";
 
-  const toc_element = document.createElement("div");
+  const toc_element = document.createElement("nav");
   toc_element.classList.add("toc-wrapper");
   toc_element.innerHTML = toc_html;
 
@@ -34,4 +34,28 @@ function initTOC() {
   } else {
     document.body.prepend(toc_element);
   }
+
+  // Highlight current section
+  const toc_links = document.querySelectorAll("nav a");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const toc_item = document.querySelector(`nav a[href="#${id}"]`);
+        if (entry.isIntersecting) {
+          toc_links.forEach((link) => link.classList.remove("active"));
+          if (toc_item) toc_item.classList.add("active");
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -50% 0px",
+      threshold: 0,
+    },
+  );
+
+  headings.forEach((section) => {
+    observer.observe(section);
+  });
 }
