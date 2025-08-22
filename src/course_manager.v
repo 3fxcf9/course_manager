@@ -5,7 +5,7 @@ import veb
 import veb.sse
 import os
 import cli { Command }
-import md_parser { md_to_html }
+import md_parser { md_to_html, parse_metadata }
 import ttytm.vvatch as w
 
 pub struct Context {
@@ -68,8 +68,9 @@ mut:
 
 struct ChapterMeta {
 	name        string
-	date        string
+	date        ?string
 	description ?string
+	keywords    ?[]string
 	cover       ?string
 	path        string
 	filename    string
@@ -103,22 +104,28 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 	for dir in directories {
 		// Parse title and in-file metadata
 		chapter_absolute_path := os.join_path(root_path, subject_path, dir)
-		content_file := (os.ls(chapter_absolute_path) or { [] }).filter(it.ends_with('.md')
+		filename := (os.ls(chapter_absolute_path) or { [] }).filter(it.ends_with('.md')
 			|| it.ends_with('.mde'))[0]!
-		chap_title := os.read_lines(os.join_path_single(chapter_absolute_path, content_file))![0]!.all_after_first('# ')
-		// TODO: Parse in-file metadata
+		file_content := os.read_lines(os.join_path_single(chapter_absolute_path, filename))!
+		chap_title := file_content[0]!.all_after_first('# ')
+		metadata := parse_metadata(file_content)
 
 		chapters << ChapterMeta{
 			name:        chap_title
-			date:        'FA/KE/DATE' // TODO: Use md date (add to md parser)
-			description: 'Briefly describe what is in this chapter, to be retrieved from the md file.'
+			date:        if 'date' in metadata { metadata['date'] } else { none }
+			description: if 'description' in metadata { metadata['description'] } else { none }
+			keywords:    if 'keywords' in metadata {
+				metadata['keywords'].split_by_space()
+			} else {
+				none
+			}
 			cover:       if os.exists(os.join_path_single(chapter_absolute_path, 'cover.svg')) {
 				'cover.svg'
 			} else {
 				none
 			}
 			path:        os.join_path_single(subject_path, dir)
-			filename:    content_file
+			filename:    filename
 		}
 	}
 
@@ -188,7 +195,7 @@ pub fn (app &App) course(mut ctx Context, subject_short string, chapter_name str
 	// Change directory for correct figure files detection, the parser should do the job by using absolute paths
 	current_path := os.abs_path('')
 	os.chdir(os.dir(filepath)) or { return ctx.request_error('Error') }
-	html := md_to_html(content)
+	_, html := md_to_html(content)
 	os.chdir(current_path) or { return ctx.request_error('Error') }
 
 	return ctx.html($tmpl('templates/course.html')) // Hack to send unescaped html
@@ -268,7 +275,7 @@ fn (mut app App) broadcast_file_content() {
 
 	current_path := os.abs_path('')
 	os.chdir(os.dir(app.file_to_watch)) or { return }
-	html := md_to_html(content)
+	_, html := md_to_html(content)
 	os.chdir(current_path) or { return }
 
 	app.active_conn.send_message(data: html.replace('\n', '\ndata: ')) or {

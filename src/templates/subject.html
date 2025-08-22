@@ -40,12 +40,23 @@
           @if desc := chap.description
             data-chapter-description="@desc"
           @end
+          @if keywords := chap.keywords
+            data-chapter-keywords="@{keywords.join(' ')}"
+          @end
         >
           @if cover := chap.cover
             <div class="cover" style="background-image: url('/raw/@chap.path/@cover')"></div>
           @end
+
           <span class="chapter-name">@chap.name</span>
-          <span class="chapter-date">@chap.date</span>
+
+          @if keywords := chap.keywords
+            <span class="chapter-keywords">@{keywords.join(" ")}</span>
+          @end
+
+          @if date := chap.date
+            <span class="chapter-date">@date</span>
+          @end
         </a>
       @end
     </div>
