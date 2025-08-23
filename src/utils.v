@@ -83,3 +83,35 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 
 	return chapters
 }
+
+fn ask_for_path(config ConfigFile) !string {
+	subjects := parse_subjects(config.general.path)!
+
+	subject_options := subjects.map("<b>${it.name:-40}</b><span size='smaller'>${it.short}</span>")
+
+	i, _ := rofi('Select subject', subject_options, ['-markup-rows'], true) or { exit(1) }
+
+	selected_subject := subjects[i]
+
+	// Chapters
+	chapters := parse_chapters(config.general.path, selected_subject.path)!
+
+	ellipsis := fn (s string, n int) string {
+		if s.runes().len <= n {
+			return s
+		}
+		return s.substr(0, n - 3) + '...'
+	}
+
+	chapter_options := chapters.map("<b>${ellipsis(it.name, 38):-40}</b><span size='smaller'>${it.date or {
+		''
+	}}</span>")
+
+	j, _ := rofi('Select subject', chapter_options, ['-markup-rows'], true) or { exit(1) }
+
+	selected_chapter := chapters[j]
+
+	filepath := os.join_path(selected_chapter.path, selected_chapter.filename)
+
+	return filepath
+}

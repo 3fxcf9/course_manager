@@ -7,13 +7,17 @@ import cli { Command }
 struct ConfigFile {
 mut:
 	general struct {
-    browser string
+		browser string
 	mut:
 		path string
 	}
-	server struct {
+	server  struct {
 		port int
 	}
+editor struct{
+command string
+args []string
+}
 }
 
 fn main() {
@@ -43,6 +47,12 @@ fn main() {
 					live(cmd, config)!
 				}
 			},
+			Command{
+				name:    'edit'
+				execute: fn [config] (cmd Command) ! {
+					edit(cmd, config)!
+				}
+			},
 			// Command{
 			// 	name:          'edit'
 			// 	usage:         '<path>'
@@ -63,33 +73,28 @@ fn main() {
 }
 
 fn live(c Command, config ConfigFile) ! {
-	subjects := parse_subjects(config.general.path)!
+	filepath := ask_for_path(config)!
 
-	subject_options := subjects.map("<b>${it.name:-40}</b><span size='smaller'>${it.short}</span>")
+	path := os.find_abs_path_of_executable(config.general.browser)!
+	mut p := os.new_process(path)
+	p.set_args(['http://localhost:${config.server.port}/live?path=${filepath}'])
+	p.run()
+}
 
-	i, _ := rofi('Select subject', subject_options, ['-markup-rows'], true) or { return }
+fn edit(c Command, config ConfigFile) ! {
+	filepath := ask_for_path(config)!
 
-	selected_subject := subjects[i]
+  // Browser
+	path := os.find_abs_path_of_executable(config.general.browser)!
+	mut p := os.new_process(path)
+	p.set_args(['http://localhost:${config.server.port}/live?path=${filepath}'])
+	p.run()
 
-
-  // Chapters
-	chapters := parse_chapters(config.general.path, selected_subject.path)!
-
-
-	ellipsis:=fn (s string, n int) string{
-    if s.runes().len <= n {
-      return s
-    }
-    return s.substr(0,n-3) + "..."
-  }
-
-	chapter_options := chapters.map("<b>${ellipsis(it.name, 38):-40}</b><span size='smaller'>${it.date or {""}}</span>")
-
-	j, _ := rofi('Select subject', chapter_options, ['-markup-rows'], true) or { return }
-
-  selected_chapter := chapters[j]
-
-  filepath := os.join_path(selected_chapter.path, selected_chapter.filename)
-
-  os.execute("${config.general.browser} http://localhost:${config.server.port}/live?path=${filepath}")
+  // Editor
+	editor_path := os.find_abs_path_of_executable(config.editor.command)!
+	mut p2 := os.new_process(editor_path)
+	mut args := config.editor.args.clone()
+	args << [os.join_path_single(config.general.path,filepath)]
+	p2.set_args(args)
+	p2.run()
 }
