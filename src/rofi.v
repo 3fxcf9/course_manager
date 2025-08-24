@@ -5,7 +5,7 @@ import os
 fn rofi(prompt string, options []string, rofi_args ?[]string, fuzzy bool) ?(int, string) {
 	optionstr := options.map(it.replace('\n', ' ')).join('\n')
 
-	mut args := '-dmenu -sort -sorting-method fzf -p ${prompt} -format s -i'
+	mut args := '-dmenu -sort -sorting-method fzf -theme-str \'entry {placeholder:"${prompt}";}\' -format s -i'
 	if fuzzy {
 		args += '-matching fuzzy'
 	}

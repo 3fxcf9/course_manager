@@ -113,8 +113,9 @@ fn edit(c Command, config ConfigFile) ! {
 	// Editor
 	editor_path := os.find_abs_path_of_executable(config.editor.command)!
 	mut p2 := os.new_process(editor_path)
-	mut args := config.editor.args.clone()
-	args << [os.join_path_single(config.general.path, filepath)]
+	mut args := config.editor.args.map(it.replace('<filename>', os.join_path_single(config.general.path,
+		filepath)).replace('<dir>', os.join_path_single(config.general.path, selected_chapter.path)))
+	dump(args)
 	p2.set_args(args)
 	p2.run()
 }
