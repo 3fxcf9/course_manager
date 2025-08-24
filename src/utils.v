@@ -114,6 +114,7 @@ fn ask_for_path(config ConfigFile) !(SubjectMeta, ChapterMeta) {
 
 fn content_type(path string) string {
 	ext := os.file_ext(path).to_lower()
+	dump(ext)
 	return match ext {
 		'.html' { 'text/html; charset=utf-8' }
 		'.css' { 'text/css; charset=utf-8' }
