@@ -7,6 +7,7 @@ import json
 import ttytm.vvatch as w
 import md_parser { md_to_html }
 import cli { Command }
+import net.http
 
 pub struct Context {
 	veb.Context
@@ -42,8 +43,18 @@ fn web(cmd Command, config ConfigFile) ! {
 	app.static_mime_types['.md'] = 'txt/plain'
 	app.static_mime_types['.mde'] = 'txt/plain'
 	app.mount_static_folder_at(figure_folder_path, '/raw')!
-	app.mount_static_folder_at('static', '/static')!
+	// app.mount_static_folder_at('static', '/static')!
 	veb.run[App, Context](mut app, config.server.port)
+}
+
+@['/static/:requested_path...']
+pub fn (app &App) assets(mut ctx Context, requested_path string) veb.Result {
+	if requested_path !in embedded_files {
+		return ctx.not_found()
+	}
+	data := embedded_files[requested_path]
+	ctx.set_header(http.CommonHeader.content_type, content_type(requested_path))
+	return ctx.ok(data)
 }
 
 @['/']

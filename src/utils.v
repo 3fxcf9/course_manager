@@ -84,7 +84,7 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 	return chapters
 }
 
-fn ask_for_path(config ConfigFile) !string {
+fn ask_for_path(config ConfigFile) !(SubjectMeta, ChapterMeta) {
 	subjects := parse_subjects(config.general.path)!
 
 	subject_options := subjects.map("<b>${it.name:-40}</b><span size='smaller'>${it.short}</span>")
@@ -109,9 +109,21 @@ fn ask_for_path(config ConfigFile) !string {
 
 	j, _ := rofi('Select subject', chapter_options, ['-markup-rows'], true) or { exit(1) }
 
-	selected_chapter := chapters[j]
+	return selected_subject, chapters[j]
+}
 
-	filepath := os.join_path(selected_chapter.path, selected_chapter.filename)
-
-	return filepath
+fn content_type(path string) string {
+	ext := os.file_ext(path).to_lower()
+	return match ext {
+		'.html' { 'text/html; charset=utf-8' }
+		'.css' { 'text/css; charset=utf-8' }
+		'.js' { 'application/javascript; charset=utf-8' }
+		'.json' { 'application/json; charset=utf-8' }
+		'.png' { 'image/png' }
+		'.jpg', '.jpeg' { 'image/jpeg' }
+		'.svg' { 'image/svg+xml' }
+		'.woff' { 'font/woff' }
+		'.woff2' { 'font/woff2' }
+		else { 'application/octet-stream' }
+	}
 }
