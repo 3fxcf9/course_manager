@@ -53,7 +53,7 @@ pub fn (app &App) assets(mut ctx Context, requested_path string) veb.Result {
 		return ctx.not_found()
 	}
 	data := embedded_files[requested_path]
-	ctx.set_header(http.CommonHeader.content_type, content_type(requested_path))
+	ctx.set_content_type(content_type(requested_path))
 	return ctx.ok(data)
 }
 
