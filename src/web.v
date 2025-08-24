@@ -165,7 +165,7 @@ fn (mut app App) broadcast_file_content() {
 
 	current_path := os.abs_path('')
 	os.chdir(os.dir(app.file_to_watch)) or { return }
-	_, html := md_to_html(content)
+	_, html := md_to_html(content) // TODO: Send metadata
 	os.chdir(current_path) or { return }
 
 	app.active_conn.send_message(data: html.replace('\n', '\ndata: ')) or {

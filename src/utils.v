@@ -60,7 +60,7 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 			|| it.ends_with('.mde'))[0]!
 		file_content := os.read_lines(os.join_path_single(chapter_absolute_path, filename))!
 		chap_title := file_content[0]!.all_after_first('# ')
-		metadata := parse_metadata(file_content)
+		metadata, _ := parse_metadata(file_content.join('\n'))
 
 		chapters << ChapterMeta{
 			name:        chap_title
