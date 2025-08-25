@@ -2,6 +2,12 @@
   padding: 1rem;
 }
 
+@media print {
+  .toc-wrapper {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .toc-wrapper {
     position: fixed;
@@ -45,11 +51,11 @@
   font-size: 0.8rem;
 }
 
-.toc > li {
+.toc>li {
   margin-bottom: 0.5rem;
 }
 
-.toc > li > ol {
+.toc>li>ol {
   /* list-style-type: custom-alpha; */
   list-style: upper-alpha;
 }
