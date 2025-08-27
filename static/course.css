@@ -79,6 +79,10 @@ p {
   }
 }
 
+.anchor {
+  scroll-margin-top: 20vh;
+}
+
 /*************** Blockquote ***************/
 /*
 * <div class="blockquote">
@@ -331,6 +335,15 @@ ol>li {
   }
 }
 
+
+/* Compact lists */
+.compact-list {
+  display: flex;
+  gap: 1em max(10vw, 2em);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /*************** Maths ***************/
 
 .katex {
@@ -425,64 +438,67 @@ ol>li {
 }
 
 /* Environment margin tag */
-.environment-theorem::before,
-.environment-corollary::before,
-.environment-lemma::before,
-.environment-proof::before,
-.environment-definition::before,
-.environment-remark::before,
-.environment-example::before,
-.environment-exercise::before {
-  font-size: 20px;
-  position: absolute;
-  left: -5%;
-  transform: translateX(-100%);
-  top: 0;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: var(--subtext-color);
-  /* Align vertically with the first line of text */
-  line-height: 200%;
-}
+@media screen and (min-width: 1000px) {
 
-.environment-theorem::before {
-  content: "THM";
-}
+  .environment-theorem::before,
+  .environment-corollary::before,
+  .environment-lemma::before,
+  .environment-proof::before,
+  .environment-definition::before,
+  .environment-remark::before,
+  .environment-example::before,
+  .environment-exercise::before {
+    font-size: 20px;
+    position: absolute;
+    left: -5%;
+    transform: translateX(-100%);
+    top: 0;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: var(--subtext-color);
+    /* Align vertically with the first line of text */
+    line-height: 200%;
+  }
 
-.environment-corollary::before {
-  content: "COR";
-}
+  .environment-theorem::before {
+    content: "THM";
+  }
 
-.environment-lemma::before {
-  content: "LEMMA";
-}
+  .environment-corollary::before {
+    content: "COR";
+  }
 
-.environment-proof::before {
-  content: "PROOF";
-}
+  .environment-lemma::before {
+    content: "LEMMA";
+  }
 
-.environment-definition::before {
-  content: "DEF";
-}
+  .environment-proof::before {
+    content: "PROOF";
+  }
 
-.environment-remark::before {
-  content: "REM";
-}
+  .environment-definition::before {
+    content: "DEF";
+  }
 
-.environment-example::before {
-  content: "EXPLE";
-}
+  .environment-remark::before {
+    content: "REM";
+  }
 
-body {
-  counter-reset: exercise-counter;
-}
+  .environment-example::before {
+    content: "EXPLE";
+  }
 
-.environment-exercise {
-  counter-increment: exercise-counter;
-}
+  body {
+    counter-reset: exercise-counter;
+  }
 
-.environment-exercise::before {
-  content: "EX " counter(exercise-counter);
+  .environment-exercise {
+    counter-increment: exercise-counter;
+  }
+
+  .environment-exercise::before {
+    content: "EX " counter(exercise-counter);
+  }
 }
 
 .environment-remark {
