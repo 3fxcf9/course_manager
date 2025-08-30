@@ -25,7 +25,7 @@ struct ChapterMeta {
 	keywords    ?[]string
 	cover       ?string
 	path        string
-	filename    string
+	files       []string
 }
 
 fn parse_subjects(root_path string) ![]SubjectMeta {
@@ -56,9 +56,9 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 	for dir in directories {
 		// Parse title and in-file metadata
 		chapter_absolute_path := os.join_path(root_path, subject_path, dir)
-		filename := (os.ls(chapter_absolute_path) or { [] }).filter(it.ends_with('.md')
-			|| it.ends_with('.mde'))[0]!
-		file_content := os.read_lines(os.join_path_single(chapter_absolute_path, filename))!
+		files := (os.ls(chapter_absolute_path) or { [] }).filter(it.ends_with('.md')
+			|| it.ends_with('.mde')).sorted()
+		file_content := os.read_lines(os.join_path_single(chapter_absolute_path, files[0]!))!
 		chap_title := file_content[0]!.all_after_first('# ')
 		metadata, _ := parse_metadata(file_content.join('\n'))
 
@@ -77,7 +77,7 @@ fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
 				none
 			}
 			path:        os.join_path_single(subject_path, dir)
-			filename:    filename
+			files:       files
 		}
 	}
 

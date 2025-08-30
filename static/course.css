@@ -195,6 +195,8 @@ pre>code {
   display: block;
 }
 
+
+
 /************** hr ***************/
 hr {
   margin: 2rem 0;
@@ -288,6 +290,58 @@ hr.style-dashed {
   }
 }
 
+/************** new file ***************/
+
+.new-file {
+  border: none;
+  background-image: linear-gradient(to right,
+      var(--subtext-color) 10%,
+      10%,
+      transparent 90%,
+      90%,
+      var(--subtext-color));
+  background-position: center top;
+  background-repeat: repeat-x;
+  background-size: 15px 2px;
+  height: 2px;
+  position: relative;
+  overflow: visible;
+
+  &:has(+ .new-file-btn-container) {
+    margin-bottom: 0;
+  }
+}
+
+.new-file::after {
+  content: "NEW FILE";
+  font-family: Inter, sans-serif;
+  font-size: .8rem;
+  margin: 0 .5rem;
+  display: block;
+  color: var(--subtext-color);
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+  background: var(--bg-color);
+}
+
+.new-file-btn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  & .preview-button {
+    translate: 0 calc(-50% - 1px);
+    background-color: var(--bg-color);
+
+    &:hover {
+      background-color: var(--subtext-color);
+    }
+  }
+}
+
+
 /*************** Lists ***************/
 ul>li {
   list-style-type: "▷  ";
@@ -339,9 +393,14 @@ ol>li {
 /* Compact lists */
 .compact-list {
   display: flex;
-  gap: 1em max(10vw, 2em);
+  gap: .2em max(10vw, 2em);
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 1.8em;
+}
+
+p:has(+ .compact-list) {
+  margin-bottom: 0;
 }
 
 /*************** Maths ***************/
@@ -708,7 +767,7 @@ figure img {
 }
 
 /* Math rendering */
-svg {
+svg:not(.katex svg):not(.back-button svg):not(.preview-button svg) {
   text-align: left !important;
   line-height: initial;
   filter: invert();

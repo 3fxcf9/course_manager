@@ -88,13 +88,24 @@ pub fn (app &App) course(mut ctx Context, subject_short string, chapter_name str
 		return ctx.request_error('Error: no such chapter found')
 	}
 
-	filepath := os.join_path(app.root, chapter.path, chapter.filename)
-	content := os.read_file(filepath) or { return ctx.not_found() }
-	chap_title := content.all_before('\n').all_after_first('# ')
+	first_file := os.join_path(app.root, chapter.path, chapter.files[0])
+	first_content := os.read_file(first_file) or { return ctx.not_found() }
+	chap_title := first_content.all_before('\n').all_after_first('# ')
+
+  mut content := ""
+
+  for i,file in chapter.files {
+    if i>0{
+      content += '\n<hr class="new-file" data-filepath="${os.join_path_single(chapter.path,file)}">\n'
+    }
+      content += os.read_file(os.join_path(app.root, chapter.path, file)) or {
+        return ctx.not_found()
+      }
+  }
 
 	// Change directory for correct figure files detection, the parser should do the job by using absolute paths
 	current_path := os.abs_path('')
-	os.chdir(os.dir(filepath)) or { return ctx.request_error('Error') }
+	os.chdir(os.dir(first_file)) or { return ctx.request_error('Error') }
 	_, html := md_to_html(content)
 	os.chdir(current_path) or { return ctx.request_error('Error') }
 

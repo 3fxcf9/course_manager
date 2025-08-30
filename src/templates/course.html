@@ -1,109 +1,85 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>@chap_title</title>
 
-    <link rel="stylesheet" href="/static/common.css" />
-    <link rel="stylesheet" href="/static/course.css" />
-    <link rel="stylesheet" href="/static/table_of_contents.css" />
-    <link rel="stylesheet" href="/static/figure_zoom.css" />
+<head>
+  <meta charset="UTF-8" />
+  <title>@chap_title</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@@0.16.22/dist/katex.min.css"
-      integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP"
-      crossorigin="anonymous"
-    />
+  <link rel="stylesheet" href="/static/common.css" />
+  <link rel="stylesheet" href="/static/course.css" />
+  <link rel="stylesheet" href="/static/table_of_contents.css" />
+  <link rel="stylesheet" href="/static/figure_zoom.css" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"
-    />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@@0.16.22/dist/katex.min.css"
+    integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous" />
 
-    <link rel="preconnect" href="https://rsms.me/" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  </head>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css" />
 
-  <body>
-    <div class="back">
-      <span onclick="window.history.back()" class="back-button"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-arrow-left"
-        >
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Chapters</span
-      >
-      <a
-        href="/live?path=@chapter.path/@chapter.filename"
-        class="preview-button"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-eye"
-        >
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-          <circle cx="12" cy="12" r="3"></circle>
-        </svg>
-        Live preview</a
-      >
-    </div>
-    <div id="app">@html</div>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+</head>
 
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@@0.16.22/dist/katex.min.js"
-      integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
-      crossorigin="anonymous"
-    ></script>
+<body>
+  <div class="back">
+    <span onclick="window.history.back()" class="back-button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" class="feather feather-arrow-left">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>Chapters</span>
+    <a href="/live?path=@chapter.path/@chapter.files.first()" class="preview-button"><svg
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>Live preview</a>
+  </div>
+  <div id="app">@html</div>
 
-    <script src="/static/math_rendering.js"></script>
-    <script src="/static/table_of_contents.js"></script>
-    <script src="/static/figure_zoom.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@@0.16.22/dist/katex.min.js"
+    integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
+    crossorigin="anonymous"></script>
 
-    <script>
-      window.addEventListener("load", renderMath);
-      window.addEventListener("load", initFigureZoom);
-      window.addEventListener("load", initTOC);
-    </script>
+  <script src="/static/math_rendering.js"></script>
+  <script src="/static/table_of_contents.js"></script>
+  <script src="/static/figure_zoom.js"></script>
 
-    <script>
-      window.addEventListener("beforeprint", (event) => {
-        for (const detailEl of document.querySelectorAll("details")) {
-          if (detailEl.getAttribute("open") == null) {
-            detailEl.setAttribute("data-was-closed", "true");
-          }
-          detailEl.setAttribute("open", "");
+  <script>
+    window.addEventListener("load", renderMath);
+    window.addEventListener("load", initFigureZoom);
+    window.addEventListener("load", initTOC);
+    window.addEventListener("load", () => {
+      const new_files = document.querySelectorAll(".new-file")
+      new_files.forEach(hr => {
+        const btn_container = document.createElement("div")
+        btn_container.href =
+          btn_container.classList.add("new-file-btn-container")
+        btn_container.innerHTML = '<a href="/live?path=' + hr.dataset.filepath + '" class="preview-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Live preview</a>'
+        hr.insertAdjacentElement("afterend", btn_container);
+      })
+    })
+  </script>
+
+  <script>
+    window.addEventListener("beforeprint", (event) => {
+      for (const detailEl of document.querySelectorAll("details")) {
+        if (detailEl.getAttribute("open") == null) {
+          detailEl.setAttribute("data-was-closed", "true");
         }
-      });
+        detailEl.setAttribute("open", "");
+      }
+    });
 
-      window.addEventListener("afterprint", (event) => {
-        for (const detailEl of document.querySelectorAll("details")) {
-          if (detailEl.getAttribute("data-was-closed") != null) {
-            detailEl.removeAttribute("data-was-closed");
-            detailEl.removeAttribute("open");
-          }
+    window.addEventListener("afterprint", (event) => {
+      for (const detailEl of document.querySelectorAll("details")) {
+        if (detailEl.getAttribute("data-was-closed") != null) {
+          detailEl.removeAttribute("data-was-closed");
+          detailEl.removeAttribute("open");
         }
-      });
-    </script>
-  </body>
+      }
+    });
+  </script>
+</body>
+
 </html>

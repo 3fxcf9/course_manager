@@ -1,4 +1,7 @@
-- Get actual metadata in md files (todo parser)
 - Fix course back button (issues with anchors)
 - Fix vw != actual viewport width in mobile figure zoom
 - Button to toggle TOC on mobile ?
+- Fix TOC id when math in headings
+- Follow mode in live preview
+- Less list spacing
+- Compact numbered list item (i) (ii) …

@@ -81,7 +81,7 @@ fn main() {
 
 fn live(c Command, config ConfigFile) ! {
 	_, selected_chapter := ask_for_path(config)!
-	filepath := os.join_path(selected_chapter.path, selected_chapter.filename)
+	filepath := os.join_path(selected_chapter.path, selected_chapter.files.last())
 
 	path := os.find_abs_path_of_executable(config.general.browser)!
 	mut p := os.new_process(path)
@@ -102,7 +102,7 @@ fn open(c Command, config ConfigFile) ! {
 
 fn edit(c Command, config ConfigFile) ! {
 	_, selected_chapter := ask_for_path(config)!
-	filepath := os.join_path(selected_chapter.path, selected_chapter.filename)
+	filepath := os.join_path(selected_chapter.path, selected_chapter.files.last())
 
 	// Browser
 	path := os.find_abs_path_of_executable(config.general.browser)!

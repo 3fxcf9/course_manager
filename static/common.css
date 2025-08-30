@@ -97,7 +97,7 @@ body {
     filter: initial;
     width: 1em;
     vertical-align: text-top;
-    margin-right: 0.5ch;
+    margin-right: 0.8ch;
   }
 }
 
@@ -109,7 +109,6 @@ body {
   transform: translateX(0.5rem);
 }
 
-/* .preview-button */
 /* Only show on desktop */
 @media screen and (min-width: 1000px) {
   .back {
