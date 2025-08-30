@@ -4,3 +4,5 @@
 - Fix TOC id when math in headings
 - Follow mode in live preview
 - Less list spacing
+- Write README.md
+- Fix file watcher freeze bug

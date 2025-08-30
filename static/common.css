@@ -48,6 +48,14 @@ body {
   }
 }
 
+::-moz-selection {
+  background: var(--subtext-color);
+}
+
+::selection {
+  background: var(--subtext-color);
+}
+
 body {
   padding: 10vh 20vw;
   color: var(--text-color);
@@ -87,6 +95,7 @@ body {
   cursor: pointer;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
+  z-index: 10000;
 
   &:hover {
     background-color: var(--subtext-color);

@@ -19,7 +19,7 @@ figure {
   border: 1px solid var(--subtext-color);
   padding: 2rem;
   border-radius: 0.5rem;
-  width: 65vw;
+  width: 80vmin;
 
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@ figure {
 
 @media screen and (max-width: 1000px) {
   .zoom_window {
-    width: 80vw;
+    width: 100vmin;
   }
 }
 

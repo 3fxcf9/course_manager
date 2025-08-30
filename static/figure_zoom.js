@@ -3,7 +3,7 @@ function initFigureZoom() {
 
   figures.forEach((f) =>
     f.addEventListener("click", () => {
-      const figureName = f.querySelector("figcaption").innerText;
+      const figureName = f.querySelector("figcaption").innerHTML;
       const figureImage = Array.from(f.querySelectorAll("svg")).concat(
         Array.from(f.querySelectorAll("img")),
       )[0];
@@ -33,7 +33,7 @@ function initFigureZoom() {
       // Legend
       const legend_element = document.createElement("span");
       legend_element.classList.add("zoom_legend");
-      legend_element.innerText = figureName;
+      legend_element.innerHTML = figureName;
       zoom_window.appendChild(legend_element);
 
       window_background.appendChild(zoom_window);
