@@ -4,4 +4,3 @@
 - Fix TOC id when math in headings
 - Follow mode in live preview
 - Less list spacing
-- Compact numbered list item (i) (ii) …

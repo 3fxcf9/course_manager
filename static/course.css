@@ -391,12 +391,40 @@ ol>li {
 
 
 /* Compact lists */
+@counter-style compact-roman {
+  system: additive;
+  additive-symbols:
+    "m" 1000,
+    "cm" 900,
+    "d" 500,
+    "cd" 400,
+    "c" 100,
+    "xc" 90,
+    "l" 50,
+    "xl" 40,
+    "x" 10,
+    "ix" 9,
+    "v" 5,
+    "iv" 4,
+    "i" 1;
+  suffix: ") ";
+  prefix: "(";
+}
+
 .compact-list {
   display: flex;
   gap: .2em max(10vw, 2em);
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.8em;
+
+  & li::marker {
+    color: var(--subtext-color);
+  }
+}
+
+ol.compact-list {
+  list-style-type: compact-roman;
 }
 
 p:has(+ .compact-list) {
@@ -434,6 +462,7 @@ p:has(+ .compact-list) {
 .environment-corollary,
 .environment-lemma,
 .environment-definition,
+.environment-method,
 .environment-example {
   border: 2px solid var(--subtext-color);
   padding: 1.5rem;
@@ -459,6 +488,10 @@ p:has(+ .compact-list) {
   border-style: dashed;
 }
 
+.environment-method {
+  border-style: dotted;
+}
+
 .environment-example {
   border-style: none none none solid;
   padding-top: 0;
@@ -470,7 +503,8 @@ p:has(+ .compact-list) {
 .environment-theorem>.environment-title,
 .environment-corollary>.environment-title,
 .environment-lemma>.environment-title,
-.environment-definition>.environment-title {
+.environment-definition>.environment-title,
+.environment-method>.environment-title {
   font-size: 0.9rem;
   position: absolute;
   left: 1rem;
@@ -504,6 +538,7 @@ p:has(+ .compact-list) {
   .environment-lemma::before,
   .environment-proof::before,
   .environment-definition::before,
+  .environment-method::before,
   .environment-remark::before,
   .environment-example::before,
   .environment-exercise::before {
@@ -537,6 +572,10 @@ p:has(+ .compact-list) {
 
   .environment-definition::before {
     content: "DEF";
+  }
+
+  .environment-method::before {
+    content: "METHOD";
   }
 
   .environment-remark::before {
