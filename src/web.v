@@ -23,25 +23,27 @@ mut:
 }
 
 fn web(cmd Command, config ConfigFile) ! {
-	figure_folder_path := config.general.path
+	root_path := config.general.path
 
-	if !os.exists(figure_folder_path) {
+	if !os.exists(root_path) {
 		error('Folder does not exists')
 	}
 
 	// Root metadata
-	meta_file_path := os.join_path_single(figure_folder_path, 'info.json')
+	meta_file_path := os.join_path_single(root_path, 'info.json')
 	info_json := os.read_file(meta_file_path)!
 	root_meta := json.decode(RootMeta, info_json)!
 
 	// Start the web server
 	mut app := &App{
-		root:      figure_folder_path
+		root:      root_path
 		root_meta: root_meta
 	}
 	app.static_mime_types['.md'] = 'txt/plain'
 	app.static_mime_types['.mde'] = 'txt/plain'
-	app.mount_static_folder_at(figure_folder_path, '/raw')!
+	app.static_mime_types['.sample'] = 'txt/plain' // Git
+	app.mount_static_folder_at(root_path, '/raw')!
+
 	// app.mount_static_folder_at('static', '/static')!
 	veb.run[App, Context](mut app, config.server.port)
 }
@@ -92,16 +94,17 @@ pub fn (app &App) course(mut ctx Context, subject_short string, chapter_name str
 	first_content := os.read_file(first_file) or { return ctx.not_found() }
 	chap_title := first_content.all_before('\n').all_after_first('# ')
 
-  mut content := ""
+	mut content := ''
 
-  for i,file in chapter.files {
-    if i>0{
-      content += '\n<hr class="new-file" data-filepath="${os.join_path_single(chapter.path,file)}">\n'
-    }
-      content += os.read_file(os.join_path(app.root, chapter.path, file)) or {
-        return ctx.not_found()
-      }
-  }
+	for i, file in chapter.files {
+		if i > 0 {
+			content += '\n<hr class="new-file" data-filepath="${os.join_path_single(chapter.path,
+				file)}">\n'
+		}
+		content += os.read_file(os.join_path(app.root, chapter.path, file)) or {
+			return ctx.not_found()
+		}
+	}
 
 	// Change directory for correct figure files detection, the parser should do the job by using absolute paths
 	current_path := os.abs_path('')

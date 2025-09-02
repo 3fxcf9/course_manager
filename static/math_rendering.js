@@ -13,6 +13,7 @@ const macros = {
   "\\K": "\\mathbb{K}",
   "\\L": "\\mathscr{L}",
   "\\B": "\\mathscr{B}",
+  "\\D": "\\mathbb{D}",
   "\\M": "\\mathcal{M}",
   "\\E": "\\mathscr{E}",
   "\\GL": "\\mathscr{GL}",
@@ -21,6 +22,7 @@ const macros = {
   "\\Func": "\\mathcal{F}",
   "\\Cont": "\\mathcal{C}",
   "\\Diff": "\\mathcal{D}",
+  "\\Part": "\\mathcal{P}",
   "\\bar": "\\overline",
   "\\Re": "\\mathscr{R\\!e}",
   "\\Im": "\\mathscr{I\\!\\!m}",
@@ -35,6 +37,10 @@ const macros = {
   "\\norm": "\\left\\lVert#1\\right\\rVert",
   "\\prop": "\\mathcal{P}",
   "\\prob": "\\mathbb{P}",
+  "\\supp": "\\operatorname{supp}",
+  "\\pgcd": "\\operatorname{pgcd}",
+  "\\ppcm": "\\operatorname{ppcm}",
+  "\\grp": "\\left\\langle #1 \\right\\rangle",
   "\\arrowlim": "\\ \\xrightarrow[\\;#1 \\to #2\\;]{}\\ ",
   "\\textlim": "\\lim\\limits_{#1}",
   "\\dd": "\\mathrm{d}",
@@ -64,7 +70,8 @@ const macros = {
   "\\icc": "\\llbracket #1 \\rrbracket",
   "\\where": "\\;\\middle\\vert\\;",
   "\\usim": "\\underset{#1}{\\sim}",
-  "\\ortho": "^{\\perp}"
+  "\\ortho": "^{\\perp}",
+  "\\emptyset": "\\varnothing"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});

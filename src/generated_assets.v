@@ -2,25 +2,55 @@
 module main
 
 pub const embedded_files = {
-	'common.css':            f_common_css
-	'course.css':            f_course_css
-	'figure_zoom.css':       f_figure_zoom_css
-	'figure_zoom.js':        f_figure_zoom_js
-	'index.css':             f_index_css
-	'math_rendering.js':     f_math_rendering_js
-	'subject.css':           f_subject_css
-	'table_of_contents.css': f_table_of_contents_css
-	'table_of_contents.js':  f_table_of_contents_js
-	'subject_search.js':     f_subject_search_js
+	'index.css':                                                    f_index_css
+	'subject.css':                                                  f_subject_css
+	'table_of_contents.js':                                         f_table_of_contents_js
+	'subject_search.js':                                            f_subject_search_js
+	'math_rendering.js':                                            f_math_rendering_js
+	'table_of_contents.css':                                        f_table_of_contents_css
+	'course.css':                                                   f_course_css
+	'figure_zoom.css':                                              f_figure_zoom_css
+	'figure_zoom.js':                                               f_figure_zoom_js
+	'common.css':                                                   f_common_css
+	'offline/katex.min.css':                                        f_offline_katex_min_css
+	'offline/computer_modern.css':                                  f_offline_computer_modern_css
+	'offline/inter.css':                                            f_offline_inter_css
+	'offline/font/cmun-bright-semibold.css':                        f_offline_font_cmun_bright_semibold_css
+	'offline/font/cmun-classical-serif-italic.css':                 f_offline_font_cmun_classical_serif_italic_css
+	'offline/font/cmun-typewriter-light.css':                       f_offline_font_cmun_typewriter_light_css
+	'offline/font/cmun-typewriter-variable.css':                    f_offline_font_cmun_typewriter_variable_css
+	'offline/font/cmun-upright-italic.css':                         f_offline_font_cmun_upright_italic_css
+	'offline/font/Sans/cmun-sans.css':                              f_offline_font_sans_cmun_sans_css
+	'offline/font/Sans Demi-Condensed/cmun-sans-demicondensed.css': f_offline_font_sans_demi_condensed_cmun_sans_demicondensed_css
+	'offline/font/Bright/cmun-bright.css':                          f_offline_font_bright_cmun_bright_css
+	'offline/font/Serif/cmun-serif.css':                            f_offline_font_serif_cmun_serif_css
+	'offline/font/Serif Slanted/cmun-serif-slanted.css':            f_offline_font_serif_slanted_cmun_serif_slanted_css
+	'offline/font/Concrete/cmun-concrete.css':                      f_offline_font_concrete_cmun_concrete_css
+	'offline/font/Typewriter/cmun-typewriter.css':                  f_offline_font_typewriter_cmun_typewriter_css
 }
 
-pub const f_common_css = $embed_file('static/common.css').to_string()
+pub const f_index_css = $embed_file('static/index.css').to_string()
+pub const f_subject_css = $embed_file('static/subject.css').to_string()
+pub const f_table_of_contents_js = $embed_file('static/table_of_contents.js').to_string()
+pub const f_subject_search_js = $embed_file('static/subject_search.js').to_string()
+pub const f_math_rendering_js = $embed_file('static/math_rendering.js').to_string()
+pub const f_table_of_contents_css = $embed_file('static/table_of_contents.css').to_string()
 pub const f_course_css = $embed_file('static/course.css').to_string()
 pub const f_figure_zoom_css = $embed_file('static/figure_zoom.css').to_string()
 pub const f_figure_zoom_js = $embed_file('static/figure_zoom.js').to_string()
-pub const f_index_css = $embed_file('static/index.css').to_string()
-pub const f_math_rendering_js = $embed_file('static/math_rendering.js').to_string()
-pub const f_subject_css = $embed_file('static/subject.css').to_string()
-pub const f_table_of_contents_css = $embed_file('static/table_of_contents.css').to_string()
-pub const f_table_of_contents_js = $embed_file('static/table_of_contents.js').to_string()
-pub const f_subject_search_js = $embed_file('static/subject_search.js').to_string()
+pub const f_common_css = $embed_file('static/common.css').to_string()
+pub const f_offline_katex_min_css = $embed_file('static/offline/katex.min.css').to_string()
+pub const f_offline_computer_modern_css = $embed_file('static/offline/computer_modern.css').to_string()
+pub const f_offline_inter_css = $embed_file('static/offline/inter.css').to_string()
+pub const f_offline_font_cmun_bright_semibold_css = $embed_file('static/offline/font/cmun-bright-semibold.css').to_string()
+pub const f_offline_font_cmun_classical_serif_italic_css = $embed_file('static/offline/font/cmun-classical-serif-italic.css').to_string()
+pub const f_offline_font_cmun_typewriter_light_css = $embed_file('static/offline/font/cmun-typewriter-light.css').to_string()
+pub const f_offline_font_cmun_typewriter_variable_css = $embed_file('static/offline/font/cmun-typewriter-variable.css').to_string()
+pub const f_offline_font_cmun_upright_italic_css = $embed_file('static/offline/font/cmun-upright-italic.css').to_string()
+pub const f_offline_font_sans_cmun_sans_css = $embed_file('static/offline/font/Sans/cmun-sans.css').to_string()
+pub const f_offline_font_sans_demi_condensed_cmun_sans_demicondensed_css = $embed_file('static/offline/font/Sans Demi-Condensed/cmun-sans-demicondensed.css').to_string()
+pub const f_offline_font_bright_cmun_bright_css = $embed_file('static/offline/font/Bright/cmun-bright.css').to_string()
+pub const f_offline_font_serif_cmun_serif_css = $embed_file('static/offline/font/Serif/cmun-serif.css').to_string()
+pub const f_offline_font_serif_slanted_cmun_serif_slanted_css = $embed_file('static/offline/font/Serif Slanted/cmun-serif-slanted.css').to_string()
+pub const f_offline_font_concrete_cmun_concrete_css = $embed_file('static/offline/font/Concrete/cmun-concrete.css').to_string()
+pub const f_offline_font_typewriter_cmun_typewriter_css = $embed_file('static/offline/font/Typewriter/cmun-typewriter.css').to_string()

@@ -29,8 +29,8 @@ struct ChapterMeta {
 }
 
 fn parse_subjects(root_path string) ![]SubjectMeta {
-	directories := (os.ls(root_path) or { [] }).filter(os.is_dir(os.join_path(root_path,
-		it)))
+	directories := (os.ls(root_path) or { [] }).filter(it != '.git'
+		&& os.is_dir(os.join_path(root_path, it)))
 
 	mut subjects := []SubjectMeta{}
 	for dir in directories {
@@ -49,8 +49,8 @@ fn parse_subjects(root_path string) ![]SubjectMeta {
 }
 
 fn parse_chapters(root_path string, subject_path string) ![]ChapterMeta {
-	directories := (os.ls(os.join_path_single(root_path, subject_path)) or { [] }).filter(os.is_dir(os.join_path(root_path,
-		subject_path, it)))
+	directories := (os.ls(os.join_path_single(root_path, subject_path)) or { [] }).filter(
+		it != '.git' && os.is_dir(os.join_path(root_path, subject_path, it)))
 
 	mut chapters := []ChapterMeta{}
 	for dir in directories {
