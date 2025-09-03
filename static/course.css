@@ -444,6 +444,10 @@ p:has(+ .compact-list) {
 
 /*************** Environments ***************/
 
+.off-program {
+  color: #ffa3a3;
+}
+
 .environment {
   margin: 1rem 0;
   position: relative;
