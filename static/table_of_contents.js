@@ -5,9 +5,11 @@ function initTOC() {
   let last_heading_level = 2;
 
   for (heading of headings) {
-    heading.id = heading.innerText.replace(" ", "-");
+    // heading.id = heading.innerText.replaceAll(" ", "-").replaceAll("\n", "-");
+    console.log(btoa(Math.random()))
+    heading.id = btoa(Math.random())
 
-    let link_html = `<a href="#${heading.id}">${heading.innerText}</a>`;
+    let link_html = `<a href="#${heading.id}">${heading.innerHTML}</a>`;
 
     let current_level = parseInt(heading.nodeName.slice(-1));
 

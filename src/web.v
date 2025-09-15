@@ -45,6 +45,11 @@ fn web(cmd Command, config ConfigFile) ! {
 	app.static_mime_types['.pack'] = 'txt/plain' // Git
 	app.static_mime_types['.idx'] = 'txt/plain' // Git
 	app.static_mime_types['.rev'] = 'txt/plain' // Git
+	// FIXME: Mimetype
+	app.static_mime_types['.ml'] = 'txt/plain' // OCaml
+	app.static_mime_types['.cmi'] = 'txt/plain' // OCaml
+	app.static_mime_types['.cmo'] = 'txt/plain' // OCaml
+	app.static_mime_types['.out'] = 'txt/plain' // OCaml
 	app.mount_static_folder_at(root_path, '/raw')!
 
 	// app.mount_static_folder_at('static', '/static')!

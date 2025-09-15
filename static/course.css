@@ -454,6 +454,12 @@ p:has(+ .compact-list) {
   page-break-inside: avoid;
 }
 
+.environment::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .environment>*:not(.environment-title):first-of-type {
   margin-top: 0;
 }
