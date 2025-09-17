@@ -1,5 +1,6 @@
 body {
   --bg-color: #11111b;
+  --bg-greyed: #45475a23;
   --text-color: #cdd6f4;
   --subtext-color: #45475a;
   --red-color: #f38ba8;
@@ -14,6 +15,7 @@ body {
 @media print {
   body {
     --bg-color: white;
+    --bg-greyed: #7c7f9323;
     --text-color: black;
     --subtext-color: #7c7f93;
     --red-color: #e64553;

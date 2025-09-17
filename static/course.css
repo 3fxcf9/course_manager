@@ -7,6 +7,11 @@ html {
   font-size: 140%;
 }
 
+p,
+.environment {
+  font-size: 1rem;
+}
+
 @media print {
 
   html,
@@ -356,7 +361,7 @@ ul>li>ul>li>ul>li {
 }
 
 ul>li::marker {
-  font-size: 0.8rem;
+  font-size: 0.8em;
 }
 
 @media print {
@@ -469,10 +474,14 @@ p:has(+ .compact-list) {
 }
 
 .environment-theorem,
+.environment-proposition,
+.environment-notation,
 .environment-corollary,
 .environment-lemma,
+.environment-property,
 .environment-definition,
 .environment-method,
+.environment-proof,
 .environment-example {
   border: 2px solid var(--subtext-color);
   padding: 1.5rem;
@@ -481,15 +490,21 @@ p:has(+ .compact-list) {
 @media print {
 
   .environment-theorem,
+  .environment-proposition,
+  .environment-notation,
   .environment-corollary,
   .environment-lemma,
+  .environment-property,
   .environment-definition,
+  .environment-method,
+  .environment-proof,
   .environment-example {
     padding: 0.5rem;
   }
 }
 
-.environment-theorem {
+.environment-theorem,
+.environment-proposition {
   border-style: double;
   border-width: 5px;
 }
@@ -498,6 +513,7 @@ p:has(+ .compact-list) {
   border-style: dashed;
 }
 
+.environment-notation,
 .environment-method {
   border-style: dotted;
 }
@@ -509,11 +525,31 @@ p:has(+ .compact-list) {
   padding-right: 0;
 }
 
+.environment-proof {
+  border-style: none none none dotted;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+}
+
+.environment-callout {
+  background-color: var(--bg-greyed);
+  padding: 1rem;
+  border-radius: .3rem;
+
+  &>.environment-title {
+    font-weight: bold;
+  }
+}
+
 /* Environment title */
 .environment-theorem>.environment-title,
+.environment-proposition>.environment-title,
 .environment-corollary>.environment-title,
 .environment-lemma>.environment-title,
+.environment-property>.environment-title,
 .environment-definition>.environment-title,
+.environment-notation>.environment-title,
 .environment-method>.environment-title {
   font-size: 0.9rem;
   position: absolute;
@@ -531,6 +567,7 @@ p:has(+ .compact-list) {
   .environment-theorem>.environment-title,
   .environment-corollary>.environment-title,
   .environment-lemma>.environment-title,
+  .environment-property>.environment-title,
   .environment-definition>.environment-title {
     font-size: 0.7rem;
   }
@@ -541,71 +578,54 @@ p:has(+ .compact-list) {
 }
 
 /* Environment margin tag */
+
+.environment-proof::before,
+.environment-remark::before,
+.environment-example::before,
+.environment-exercise::before {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: var(--subtext-color);
+  /* Align vertically with the first line of text */
+  line-height: 200%;
+}
+
+
+.environment-proof::before {
+  content: "PREUVE";
+}
+
+.environment-remark::before {
+  content: "REMARQUE";
+}
+
+.environment-example::before {
+  content: "EXEMPLE";
+}
+
+body {
+  counter-reset: exercise-counter;
+}
+
+.environment-exercise {
+  counter-increment: exercise-counter;
+}
+
+.environment-exercise::before {
+  content: "EXO " counter(exercise-counter);
+}
+
 @media screen and (min-width: 1000px) {
 
-  .environment-theorem::before,
-  .environment-corollary::before,
-  .environment-lemma::before,
   .environment-proof::before,
-  .environment-definition::before,
-  .environment-method::before,
   .environment-remark::before,
   .environment-example::before,
   .environment-exercise::before {
-    font-size: 20px;
     position: absolute;
     left: -5%;
     transform: translateX(-100%);
     top: 0;
-    font-family: sans-serif;
-    font-weight: bold;
-    color: var(--subtext-color);
-    /* Align vertically with the first line of text */
-    line-height: 200%;
-  }
-
-  .environment-theorem::before {
-    content: "THM";
-  }
-
-  .environment-corollary::before {
-    content: "COR";
-  }
-
-  .environment-lemma::before {
-    content: "LEMMA";
-  }
-
-  .environment-proof::before {
-    content: "PROOF";
-  }
-
-  .environment-definition::before {
-    content: "DEF";
-  }
-
-  .environment-method::before {
-    content: "METHOD";
-  }
-
-  .environment-remark::before {
-    content: "REM";
-  }
-
-  .environment-example::before {
-    content: "EXPLE";
-  }
-
-  body {
-    counter-reset: exercise-counter;
-  }
-
-  .environment-exercise {
-    counter-increment: exercise-counter;
-  }
-
-  .environment-exercise::before {
-    content: "EX " counter(exercise-counter);
   }
 }
 

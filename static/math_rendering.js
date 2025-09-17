@@ -42,6 +42,8 @@ const macros = {
   "\\supp": "\\operatorname{supp}",
   "\\pgcd": "\\operatorname{pgcd}",
   "\\ppcm": "\\operatorname{ppcm}",
+  "\\gcd": "\\operatorname{pgcd}",
+  "\\lcm": "\\operatorname{ppcm}",
   "\\grp": "\\left\\langle #1 \\right\\rangle",
   "\\arrowlim": "\\ \\xrightarrow[\\;#1 \\to #2\\;]{}\\ ",
   "\\textlim": "\\lim\\limits_{#1}",
@@ -74,7 +76,8 @@ const macros = {
   "\\where": "\\;\\middle\\vert\\;",
   "\\usim": "\\underset{#1}{\\sim}",
   "\\ortho": "^{\\perp}",
-  "\\emptyset": "\\varnothing"
+  "\\emptyset": "\\varnothing",
+  "\\mdot": "\\boldsymbol{\\cdot}"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
