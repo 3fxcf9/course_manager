@@ -8,6 +8,20 @@ html {
   text-size-adjust: none;
 }
 
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 125%;
+    text-size-adjust: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 115%;
+    text-size-adjust: none;
+  }
+}
+
 p,
 .environment {
   font-size: 1rem;
