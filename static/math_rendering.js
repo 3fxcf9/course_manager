@@ -77,7 +77,8 @@ const macros = {
   "\\usim": "\\underset{#1}{\\sim}",
   "\\ortho": "^{\\perp}",
   "\\emptyset": "\\varnothing",
-  "\\mdot": "\\boldsymbol{\\cdot}"
+  "\\mdot": "\\boldsymbol{\\cdot}",
+  "\\hat": "\\widehat"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
