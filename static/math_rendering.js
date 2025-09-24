@@ -59,6 +59,7 @@ const macros = {
   "\\mat": "\\operatorname{mat}",
   "\\tr": "\\operatorname{tr}",
   "\\mtx": "\\begin{pmatrix}#1\\end{pmatrix}",
+  "\\arrmtx": "\\left(\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}\\right)",
   "\\transp": "^{\\mkern-1.5mu\\mathsf{T}}",
   "\\tilde": "\\widetilde",
   "\\applic": "\\begin{array}{rcl}#1 & \\longrightarrow & #2 \\\\ #3 & \\longmapsto & #4\\end{array}",
@@ -78,7 +79,9 @@ const macros = {
   "\\ortho": "^{\\perp}",
   "\\emptyset": "\\varnothing",
   "\\mdot": "\\boldsymbol{\\cdot}",
-  "\\hat": "\\widehat"
+  "\\hat": "\\widehat",
+  "\\sp": "\\operatorname{Sp}",
+  "\\sembl": "\\overset{\\tiny S}\\sim"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
