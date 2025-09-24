@@ -59,6 +59,7 @@ const macros = {
   "\\mat": "\\operatorname{mat}",
   "\\tr": "\\operatorname{tr}",
   "\\mtx": "\\begin{pmatrix}#1\\end{pmatrix}",
+  "\\vmtx": "\\begin{vmatrix}#1\\end{vmatrix}",
   "\\arrmtx": "\\left(\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}\\right)",
   "\\transp": "^{\\mkern-1.5mu\\mathsf{T}}",
   "\\tilde": "\\widetilde",
@@ -81,6 +82,7 @@ const macros = {
   "\\mdot": "\\boldsymbol{\\cdot}",
   "\\hat": "\\widehat",
   "\\sp": "\\operatorname{Sp}",
+  "\\diag": "\\operatorname{diag}",
   "\\sembl": "\\overset{\\tiny S}\\sim"
 };
 
