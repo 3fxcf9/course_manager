@@ -61,6 +61,8 @@ const macros = {
   "\\mtx": "\\begin{pmatrix}#1\\end{pmatrix}",
   "\\vmtx": "\\begin{vmatrix}#1\\end{vmatrix}",
   "\\arrmtx": "\\left(\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}\\right)",
+  "\\arrvmtx": "\\left|\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}\\right|",
+  "\\arr": "\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}",
   "\\transp": "^{\\mkern-1.5mu\\mathsf{T}}",
   "\\tilde": "\\widetilde",
   "\\applic": "\\begin{array}{rcl}#1 & \\longrightarrow & #2 \\\\ #3 & \\longmapsto & #4\\end{array}",
