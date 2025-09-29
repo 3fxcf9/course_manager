@@ -41,6 +41,7 @@ fn web(cmd Command, config ConfigFile) ! {
 	}
 	app.static_mime_types['.md'] = 'txt/plain'
 	app.static_mime_types['.mde'] = 'txt/plain'
+	app.static_mime_types['.py'] = 'txt/plain'
 	app.static_mime_types['.sample'] = 'txt/plain' // Git
 	app.static_mime_types['.pack'] = 'txt/plain' // Git
 	app.static_mime_types['.idx'] = 'txt/plain' // Git
