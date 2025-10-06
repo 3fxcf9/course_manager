@@ -45,7 +45,8 @@ const macros = {
   "\\gcd": "\\operatorname{pgcd}",
   "\\lcm": "\\operatorname{ppcm}",
   "\\grp": "\\left\\langle #1 \\right\\rangle",
-  "\\arrowlim": "\\ \\xrightarrow[\\;#1 \\to #2\\;]{}\\ ",
+  "\\arrowlim": "\\ \\xrightarrow[\\;#1\\;]{}\\ ",
+  "\\ev": "\\underset{#1}\\sim",
   "\\textlim": "\\lim\\limits_{#1}",
   "\\dd": "\\mathrm{d}",
   "\\expect": "\\mathbb{E}",
@@ -128,6 +129,7 @@ function renderMath() {
         try {
           katex.render(expr, span, {
             throwOnError: false,
+            macros: macros,
           });
 
           // Replace SVG <text> with foreignObject to embed HTML inside SVG
