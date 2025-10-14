@@ -53,6 +53,19 @@ h2 {
   margin-top: 2rem;
 }
 
+h3 {
+  margin-top: 1.5rem;
+}
+
+h4 {
+  margin-top: 1rem;
+}
+
+h5,
+h6 {
+  margin-top: .8rem;
+}
+
 a {
   color: var(--links-color);
 }
@@ -449,6 +462,15 @@ ol.compact-list {
 
 p:has(+ .compact-list) {
   margin-bottom: 0;
+}
+
+ul.list-plus p {
+  margin: .5rem;
+  line-height: 150%;
+}
+
+ul.list-plus li {
+  margin-top: 0;
 }
 
 /*************** Maths ***************/
