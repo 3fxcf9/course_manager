@@ -92,7 +92,8 @@ const macros = {
   "\\sp": "\\operatorname{Sp}",
   "\\diag": "\\operatorname{diag}",
   "\\long": "\\operatorname{long}",
-  "\\sembl": "\\overset{\\tiny S}\\sim"
+  "\\sembl": "\\overset{\\tiny S}\\sim",
+  "\\mangl":"\\angl{\\scriptsize $#1$\\,}"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
