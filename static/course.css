@@ -236,6 +236,25 @@ hr {
   border-top: 2px solid var(--subtext-color);
 }
 
+hr.style-compact {
+  margin: .8rem 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-compact::after {
+  content: "~";
+  color: var(--subtext-color);
+  font-size: 2rem;
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  height: 13px;
+  overflow: hidden;
+}
+
 hr.style-sawteeth {
   height: 30px;
   border: none;
