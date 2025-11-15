@@ -2,6 +2,7 @@ const macros = {
   "\\leq": "\\leqslant",
   "\\geq": "\\geqslant",
   "\\Sol": "\\mathcal{S}",
+  "\\1": "\\mathbf{1}",
   "\\N": "\\mathbf{N}",
   "\\Z": "\\mathbf{Z}",
   "\\Q": "\\mathbf{Q}",
@@ -20,6 +21,7 @@ const macros = {
   "\\GLM": "\\mathrm{GL}",
   "\\CM": "\\mathscr{CM}",
   "\\Func": "\\mathcal{F}",
+  "\\Def": "\\mathscr{D}",
   "\\Cont": "\\mathscr{C}",
   "\\Diff": "\\mathscr{D}",
   "\\Part": "\\mathscr{P}",
@@ -48,6 +50,7 @@ const macros = {
   "\\lcm": "\\operatorname{ppcm}",
   "\\grp": "\\left\\langle #1 \\right\\rangle",
   "\\arrowlim": "\\ \\xrightarrow[\\;#1\\;]{}\\ ",
+  "\\sarrowlim": "\\ \\xrightarrow[\\;#1\\;]{\\text{simplement}}\\ ",
   "\\ev": "\\underset{#1}\\sim",
   "\\textlim": "\\lim\\limits_{#1}",
   "\\dd": "\\mathrm{d}",
@@ -93,7 +96,9 @@ const macros = {
   "\\diag": "\\operatorname{diag}",
   "\\long": "\\operatorname{long}",
   "\\sembl": "\\overset{\\tiny S}\\sim",
-  "\\mangl":"\\angl{\\scriptsize $#1$\\,}"
+  "\\mangl":"\\angl{\\scriptsize $#1$\\,}",
+  "\\sur":"\\text{ sur }",
+  "\\if":"&\\text{ si }"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
