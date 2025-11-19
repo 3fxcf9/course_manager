@@ -6,3 +6,4 @@
 - Less list spacing
 - Write README.md
 - Fix file watcher freeze bug
+- Environment title plural (defs, thms …)

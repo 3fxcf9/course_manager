@@ -38,6 +38,7 @@ const macros = {
   "\\vv": "\\overrightarrow{#1}",
   "\\abs": "\\left\\lvert#1\\right\\rvert",
   "\\norm": "\\left\\lVert#1\\right\\rVert",
+  "\\opnorm": "\\left\\lVert#1\\right\\rVert_{\\text{op}}",
   "\\floor": "\\left\\lfloor#1\\right\\rfloor",
   "\\ceil": "\\left\\lceil#1\\right\\rceil",
   "\\card": "\\#",
@@ -65,6 +66,7 @@ const macros = {
   "\\rg": "\\operatorname{rg}",
   "\\mat": "\\operatorname{mat}",
   "\\tr": "\\operatorname{tr}",
+  "\\com": "\\operatorname{com}",
   "\\mtx": "\\begin{pmatrix}#1\\end{pmatrix}",
   "\\vmtx": "\\begin{vmatrix}#1\\end{vmatrix}",
   "\\arrmtx": "\\left(\\def\\arraystretch{1.5}\\begin{array}{#1}#2\\end{array}\\right)",
@@ -88,6 +90,7 @@ const macros = {
   "\\usim": "\\underset{#1}{\\sim}",
   "\\ueq": "\\underset{#1}{=}",
   "\\oeq": "\\overset{\\text{#1}}{=}",
+  "\\defeq": "\\overset{\\text{def}}{=}",
   "\\ugeq": "\\underset{#1}{\\geq}",
   "\\ogeq": "\\overset{\\text{#1}}{\\geq}",
   "\\uleq": "\\underset{#1}{\\leq}",
@@ -106,7 +109,7 @@ const macros = {
   "\\sembl": "\\overset{\\tiny S}\\sim",
   "\\mangl":"\\angl{\\scriptsize $#1$\\,}",
   "\\sur":"\\text{ sur }",
-  "\\if":"&\\text{ si }"
+  "\\if":"&\\text{si }"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
