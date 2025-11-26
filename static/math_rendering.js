@@ -17,6 +17,7 @@ const macros = {
   "\\D": "\\mathbf{D}",
   "\\M": "\\mathcal{M}",
   "\\E": "\\mathscr{E}",
+  "\\V": "\\mathscr{V}",
   "\\GL": "\\mathscr{GL}",
   "\\GLM": "\\mathrm{GL}",
   "\\CM": "\\mathscr{CM}",
@@ -39,6 +40,7 @@ const macros = {
   "\\abs": "\\left\\lvert#1\\right\\rvert",
   "\\norm": "\\left\\lVert#1\\right\\rVert",
   "\\opnorm": "\\left\\lVert#1\\right\\rVert_{\\text{op}}",
+  "\\triplenorm": "|\\hspace{-0.1em}|\\hspace{-0.1em}|#1|\\hspace{-0.1em}|\\hspace{-0.1em}|",
   "\\floor": "\\left\\lfloor#1\\right\\rfloor",
   "\\ceil": "\\left\\lceil#1\\right\\rceil",
   "\\card": "\\#",
@@ -109,7 +111,11 @@ const macros = {
   "\\sembl": "\\overset{\\tiny S}\\sim",
   "\\mangl":"\\angl{\\scriptsize $#1$\\,}",
   "\\sur":"\\text{ sur }",
-  "\\if":"&\\text{si }"
+  "\\if":"&\\text{si }",
+  "\\ring": "\\mathring",
+  "\\fr": "\\operatorname{fr}",
+  "\\longring": "\\mathring{\\overgroup{#1}}",
+  "\\non": "\\operatorname{non}"
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
