@@ -27,6 +27,7 @@ const macros = {
   "\\Cont": "\\mathscr{C}",
   "\\Diff": "\\mathscr{D}",
   "\\Part": "\\mathscr{P}",
+  "\\Prop": "\\mathscr{P}",
   "\\bar": "\\overline",
   "\\ubar": "\\underline",
   "\\Re": "\\mathscr{R\\!e}",
