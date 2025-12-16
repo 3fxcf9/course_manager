@@ -39,6 +39,7 @@ const macros = {
   "\\cgm": "\\equiv #1 \\left[#2\\right]",
   "\\ncgm": "\\not\\equiv #1 \\left[#2\\right]",
   "\\vv": "\\overrightarrow{#1}",
+  "\\div": "\\operatorname{div}",
   "\\abs": "\\left\\lvert#1\\right\\rvert",
   "\\norm": "\\left\\lVert#1\\right\\rVert",
   "\\opnorm": "\\left\\lVert#1\\right\\rVert_{\\text{op}}",
