@@ -17,7 +17,11 @@ const macros = {
   "\\D": "\\mathbf{D}",
   "\\M": "\\mathcal{M}",
   "\\E": "\\mathscr{E}",
+  "\\G": "\\mathscr{G}", // Proba seulement, rendre local
+  "\\T": "\\mathscr{T}", // Topologie (remplacer \mathscr{T}) et proba seulement, rendre local
+  "\\Tribu": "\\mathscr{F}",
   "\\Ball": "\\mathscr{B}",
+  "\\Disk": "\\mathscr{D}",
   "\\Vois": "\\mathscr{V}",
   "\\Epi": "\\operatorname{Epi}",
   "\\GL": "\\mathscr{GL}",
@@ -123,14 +127,25 @@ const macros = {
   "\\sembl": "\\overset{\\tiny S}\\sim",
   "\\mangl":"\\angl{\\scriptsize $#1$\\,}",
   "\\sur":"\\text{ sur }",
+  "\\dans":"\\text{ sur }",
   "\\if":"&\\text{si }",
   "\\and":"\\text{ et }",
+  "\\ie":"\\text{ i.e. }",
   "\\with":"\\quad\\text{with}\\quad",
   "\\else":"&\\text{sinon}",
   "\\ring": "\\mathring",
   "\\fr": "\\operatorname{fr}",
   "\\longring": "\\mathring{\\overgroup{#1}}",
-  "\\non": "\\operatorname{non}"
+  "\\non": "\\operatorname{non}",
+  "\\stress": "\\color{yellow}#1\\color{reset}",
+  // "\\upbigcup": "\\bigcup\\mathclap{\\raisebox{0.2ex}{\\mkern{-3.4ex}$\\uparrow$}}",
+  // "\\downbigcup": "\\bigcup\\mathclap{\\raisebox{0.2ex}{\\mkern{-3.4ex}$\\downarrow$}}",
+  // "\\upbigcap": "\\bigcap\\mathclap{\\raisebox{-0.2ex}{\\mkern{-3.4ex}$\\uparrow$}}",
+  // "\\downbigcap": "\\bigcap\\mathclap{\\raisebox{-0.2ex}{\\mkern{-3.4ex}$\\downarrow$}}"
+  "\\upbigcup": "\\bigcup\\mathclap{\\raisebox{0.8ex}{\\mkern{-1.22ex}$\\boldsymbol\\uparrow$}}",
+  "\\downbigcup": "\\bigcup\\mathclap{\\raisebox{0.2ex}{\\mkern{-3.4ex}$\\downarrow$}}",
+  "\\upbigcap": "\\bigcap\\mathclap{\\raisebox{-0.2ex}{\\mkern{-3.4ex}$\\uparrow$}}",
+  "\\downbigcap": "\\bigcap\\mathclap{\\raisebox{-0.8ex}{\\mkern{-1.24ex}$\\boldsymbol\\downarrow$}}",
 };
 
 // document.addEventListener("DOMContentLoaded", function () {});
