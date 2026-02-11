@@ -190,8 +190,10 @@ cite::before {
 }
 
 mark {
-  background-color: var(--accent-color);
-  color: var(--on-accent-color);
+  background-color: var(--subtext-color);
+  color: var(--text-color);
+  /* background-color: var(--accent-color); */
+  /* color: var(--on-accent-color); */
 }
 
 /*************** code ***************/
